@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body >
+
+<h1>The ToDoList item Creator</h1>
+
+<form th:action="@{/NewItemCreated}" th:method="post" th:object="${toDoItem}">
+<input th:field="*{title}" type="text" />
+
+<button>Submit</button>
+</form>
+</body>
+</html>

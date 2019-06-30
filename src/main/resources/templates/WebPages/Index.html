@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body >
+
+<h1>To DO or NOT to DO!!!???</h1>
+<h4>that is the question</h4>
+
+<form th:action="@{/NewItem}" th:method="get">
+<button>Click to create a new item!</button>
+</form>
+
+<h1>ShOuLd YoU dO iT?</h1>
+
+<div th:each="item:${Items}">
+	<div th:text="*{item.title}"></div>
+</div>
+
+</body>
+</html>
