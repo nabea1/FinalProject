@@ -1,22 +1,111 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
 </head>
 <body >
 
-<h1>To DO or NOT to DO!!!???</h1>
-<h4>that is the question</h4>
+    <style>
+    
+    
+    
+    .jumbotron {padding-top: 10px;
+            padding-bottom:0px;
+            background-size: cover;
+            background-color: black;
+            color: black;
+                        
+            }
+            
+    .buttoncolor { background-color: #500000;
+    }
+    
+    body {background-color: #A9A9A9;
+        margin: 0 auto;
+     }
+            
+    .col {
+   height: 200px;
+   width: 1000px;
+   border: 15px solid black;
+   padding: 10px;
+   background-color: gray;
 
-<form th:action="@{/NewItem}" th:method="get">
-<button>Click to create a new item!</button>
-</form>
 
+}
+    
+    </style>
+    <div class="container">
+        <div class = "row">
+            <div class = "col-md-12 center-block">
+                <div class = "jumbotron col text-center">
+
+            <h1>To DO or NOT to DO!?</h1>
+            <h4>that is the question</h4>
+            </div>
+        </div>
+    </div>
+
+        <form th:action="@{/NewItem}" th:method="get">
+            
+                <button class ="btn btn-lg btn-danger center-block" name="Submit"
+                value="Login" type="Submit">Click to create new item!</button>
+        </form>
+        
+        <form th:action="@{/completed}" th:method="get">
+        
+        <button class ="btn btn-lg btn-danger center-block" name="Submit"
+                value="Login" type="Submit">Click to check completed!</button>
+			
+			
+		</form>
 <h1>ShOuLd YoU dO iT?</h1>
+<h4><span th:text="${time}"></span></h4>
 
 <div th:each="item:${Items}">
-	<div th:text="*{item.title}"></div>
+	<p> ID: <span th:text="*{item.id}"></span></p>
+	<p> Title: <span th:text="*{item.title}"></span></p>
+	<p> Description: <span th:text="*{item.description}"></span></p>
+	<p> Status: <span th:text="*{item.status}"></span></p>
+	<p> Deadline: <span th:text="*{item.deadline}"></span></p>
+	
+	<form th:method="put" th:action="@{'/completed/{id}'(id=${item.id})}">
+	<input type="checkbox"  onChange="submit()"/>
+                 <label th:text="${item.status}"></label>
+                 </form>
 </div>
+<h1>Future Items</h1>
+<div th:each="item:${future}">
+	<p> ID: <span th:text="*{item.id}"></span></p>
+	<p> Title: <span th:text="*{item.title}"></span></p>
+	<p> Description: <span th:text="*{item.description}"></span></p>
+	<p> Status: <span th:text="*{item.status}"></span></p>
+	<p> Deadline: <span th:text="*{item.deadline}"></span></p>
+	
+	<form th:method="put" th:action="@{'/completed/{id}'(id=${item.id})}">
+	<input type="checkbox"  onChange="submit()"/>
+                 <label th:text="${item.status}"></label>
+                 </form>
+</div>
+    
+
+        
+    </div>    
+    
+    
+
+
+
+
+
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
 
 </body>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body >
+
+<h1>To DO or NOT to DO!!!???</h1>
+<h4>that is the question</h4>
+
+<form th:action="@{/}" th:method="get">
+<button>Click to go home</button>
+</form>
+
+<h1>YoU dId It?</h1>
+<h4><span th:text="${time}"></span></h4>
+
+<div th:each="item:${Items}">
+	<p> ID: <span th:text="*{item.id}"></span></p>
+	<p> Title: <span th:text="*{item.title}"></span></p>
+	<p> Description: <span th:text="*{item.description}"></span></p>
+	<p> Status: <span th:text="*{item.status}"></span></p>
+	<p> Deadline: <span th:text="*{item.deadline}"></span></p>
+	
+	<form th:method="put" th:action="@{'/completed/{id}'(id=${item.id})}">
+	<input type="checkbox"  onChange="submit()" checked/>
+                 <label th:text="${item.status}"></label>
+                 </form>
+</div>
+</body>
+</html>
